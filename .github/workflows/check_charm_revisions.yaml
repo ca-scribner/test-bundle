@@ -1,6 +1,6 @@
 name: Check Charm Revisions
 on:
-  workflow-dispatch:
+  workflow_dispatch
 
 jobs:
   check-bundles:
