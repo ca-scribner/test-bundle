@@ -29,6 +29,8 @@ jobs:
       - run: python main.py ${{ matrix.bundle_dir }}/bundle.yaml ${{ matrix.bundle_dir }}/bundle.yaml
       - run: git status
       - run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com>"
           git add -u
           git commit -m "Automated bump of charm revisions"
       - name: Create Pull Request
