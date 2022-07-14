@@ -4,6 +4,8 @@ on:
 
 jobs:
   check-bundles:
+    name: Check bundles for updates
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
