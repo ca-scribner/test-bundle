@@ -28,14 +28,18 @@ jobs:
       - run: pip install -r _helpers/requirements.txt
       - run: python main.py ${{ matrix.bundle_dir }}/bundle.yaml ${{ matrix.bundle_dir }}/bundle.yaml
       - run: git status
-      - run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com>"
-          git add -u
-          git commit -m "Automated bump of charm revisions"
+      # We can make commits, but any untracked changes will still be committed by the action
+      # - run: |
+      #     git config user.name "${{ github.actor }}"
+      #     git config user.email "${{ github.actor }}@users.noreply.github.com>"
+      #     git add -u
+      #     git commit -m "Automated bump of charm revisions"
+      - name: Clean up untracked changes
+        run: git clean -f
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.PAT }}
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # For debugging
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
