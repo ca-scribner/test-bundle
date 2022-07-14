@@ -28,3 +28,5 @@ jobs:
       - run: pip install -r _helpers/requirements.txt
       - run: python main.py ${{ matrix.bundle_dir }}/bundle.yaml ${{ matrix.bundle_dir }}/bundle.yaml
       - run: git status
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
