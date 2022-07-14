@@ -16,6 +16,11 @@ jobs:
         with:
           repository: ca-scribner/charm-ci-helpers
           path: _helpers
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
       - run: mv _helpers/*.py ./
+      - run: tree
+      - run: pip install -r _helpers/requirements.txt
       - run: python main.py ${{ matrix.bundle_dir }}/bundle.yaml ${{ matrix.bundle_dir }}/bundle.yaml
       - run: git status
