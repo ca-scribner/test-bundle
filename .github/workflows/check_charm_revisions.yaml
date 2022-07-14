@@ -28,6 +28,9 @@ jobs:
       - run: pip install -r _helpers/requirements.txt
       - run: python main.py ${{ matrix.bundle_dir }}/bundle.yaml ${{ matrix.bundle_dir }}/bundle.yaml
       - run: git status
+      - run: |
+          git add -u
+          git commit -m "Automated bump of charm revisions"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
