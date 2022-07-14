@@ -12,6 +12,7 @@ jobs:
         bundle_dir: [releases/sample1/edge/ca-scribner-test-bundle]
     steps:
       - uses: actions/checkout@v3
+      # Get helpers
       - uses: actions/checkout@v3
         with:
           repository: ca-scribner/charm-ci-helpers
@@ -20,6 +21,8 @@ jobs:
         with:
           python-version: '3.9'
       - run: mv _helpers/*.py ./
+      - name: Install Juju
+        run: snap install juju --classic
       - run: tree
       - run: pip install -r _helpers/requirements.txt
       - run: python main.py ${{ matrix.bundle_dir }}/bundle.yaml ${{ matrix.bundle_dir }}/bundle.yaml
