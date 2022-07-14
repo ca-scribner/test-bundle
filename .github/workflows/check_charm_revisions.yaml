@@ -22,7 +22,7 @@ jobs:
           python-version: '3.9'
       - run: mv _helpers/*.py ./
       - name: Install Juju
-        run: snap install juju --classic
+        run: sudo snap install juju --classic
       - run: tree
       - run: pip install -r _helpers/requirements.txt
       - run: python main.py ${{ matrix.bundle_dir }}/bundle.yaml ${{ matrix.bundle_dir }}/bundle.yaml
