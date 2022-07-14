@@ -1,7 +1,7 @@
 name: Check Charm Revisions
 on:
   - workflow_dispatch
-  - push
+  - push  # For debugging only.  
 
 jobs:
   check-bundles:
