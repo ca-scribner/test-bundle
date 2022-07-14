@@ -1,0 +1,19 @@
+name: Check Charm Revisions
+on:
+  workflow-dispatch:
+
+jobs:
+  check-bundles:
+    strategy:
+      fail-fast: false
+      matrix:
+        bundle_dir: [releases/sample1/edge/ca-scribner-test-bundle]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: ca-scribner/charm-ci-helpers
+          path: _helpers
+      - run: mv _helpers/*.py ./
+      - run: python main.py ${{ matrix.bundle_dir }}/bundle.yaml ${{ matrix.bundle_dir }}/bundle.yaml
+      - run: git status
