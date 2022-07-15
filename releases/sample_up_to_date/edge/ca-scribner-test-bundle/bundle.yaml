@@ -1,5 +1,3 @@
-# Modified from https://github.com/canonical/kubeflow-ci/blob/main/releases/1.4/kubeflow-bundle.yaml
-
 applications:
   ca-scribner-test-charm-edge:
     _github_repo_name: test-charm
@@ -15,7 +13,7 @@ applications:
     scale: 1
   other-charm:
     _github_repo_name: some-other-repo
-    charm: metacontroller-operator
     channel: latest/stable
+    charm: metacontroller-operator
 bundle: kubernetes
 name: ca-scribner-test-bundle
