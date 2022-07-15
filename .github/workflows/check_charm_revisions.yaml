@@ -55,6 +55,10 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.PAT }}
+          # TODO: Sanitize this so it is always an ok branch name
+          branch: ${{ matrix.release-path }}
+          title: (automated) Outdated charms detected in Release ${{ matrix.release-path }}
+          body: This is an automated PR to bump all outdated charms to their most recent version.  
       # For debugging
       # - name: Setup tmate session
       #   uses: mxschmitt/action-tmate@v3
