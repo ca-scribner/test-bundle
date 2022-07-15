@@ -1,0 +1,33 @@
+name: Test new changes
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - track/**
+
+jobs:
+  detect-changed-releases:
+    runs-on: ubuntu-latest
+    name: Detect changed releases
+    description: Emits the paths to release directories that have changed relative to the target branch
+    outputs:
+      release_paths_json: ${{ steps.get-changed-releases.outputs.PATHS_JSON}}
+    steps: 
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+    - id: get-changed-releases
+      run: |
+        RELEASES=$(git diff --name-only HEAD~10  | awk -F "/*[^/]*/*$" '{ print ($1 == "" ? "." : $1); }' | sort | uniq | \grep --color=auto ^releases | jq --slurp --raw-input 'split("\n")[:-1]' | jq -c "{\"release-path\": . }")
+        echo "::set-output name=PATHS_JSON::$RELEASES"
+
+  tests:
+    name: Run Tests
+    needs: detect-changed-release
+    strategy:
+      matrix: ${{ fromJson(needs.detect-changed-release.outputs.release_paths_json) }}
+    uses: ./.github/workflows/integration.yaml
+    with:
+      release-dir: ${{ matrix.release-path }}

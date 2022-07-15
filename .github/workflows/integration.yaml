@@ -1,0 +1,20 @@
+name: Test a Release
+on:
+  workflow_dispatch:
+    inputs:
+      release-dir:
+        required: true
+        description: 'Directory path to the release being tested'
+
+jobs:
+  test-release:
+    name: Run "tests" on a given release
+    needs: get-release-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: '"test" the release'
+        # Just confirm the dir exists
+        run: |
+          echo "Checking if ${{ github.event.inputs.release-dir" exists"
+          ls ${{ github.event.inputs.release-dir }} || exit 5
