@@ -1,21 +1,19 @@
-# Modified from https://github.com/canonical/kubeflow-ci/blob/main/releases/1.4/kubeflow-bundle.yaml
-
 applications:
   ca-scribner-test-charm-edge:
     _github_repo_name: test-charm
-    _tracked_channel: latest/edge  # `channel` is ignored if revision is here, I think.  But maybe we should _hide it anyway
+    _tracked_channel: latest/edge
     charm: ca-scribner-test-charm
-    revision: 7  # Null to start for new bundle?  Or could just set to -1 or 0
+    revision: 7
     scale: 1
   ca-scribner-test-charm-stable:
     _github_repo_name: test-charm
-    _tracked_channel: latest/stable  # `channel` is ignored if revision is here, I think.  But maybe we should _hide it anyway
+    _tracked_channel: latest/stable
     charm: ca-scribner-test-charm
     revision: 7
     scale: 1
   other-charm:
     _github_repo_name: some-other-repo
-    charm: metacontroller-operator
     channel: latest/stable
+    charm: metacontroller-operator
 bundle: kubernetes
 name: ca-scribner-test-bundle
