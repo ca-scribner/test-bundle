@@ -1,7 +1,9 @@
 name: Check Charm Revisions
 on:
-  - workflow_dispatch
-  - push  # For debugging only.  
+  workflow_dispatch:
+  # For debugging only.  
+  push:
+    branches: main
 
 jobs:
   get-release-matrix:
