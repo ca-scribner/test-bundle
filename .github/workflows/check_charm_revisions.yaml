@@ -10,6 +10,7 @@ jobs:
     outputs:
       release_paths_json: ${{ steps.get-release-matrix-step.outputs.PATHS_JSON }}
     steps:
+      - uses: actions/checkout@v3
       - id: get-release-matrix-step
         run: |
           RELEASES=$(find releases -name bundle.yaml | xargs -L1 dirname | jq --slurp --raw-input 'split("\n")[:-1]' | jq -c "{\"release-path\": . }")
