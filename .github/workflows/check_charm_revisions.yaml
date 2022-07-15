@@ -4,13 +4,23 @@ on:
   - push  # For debugging only.  
 
 jobs:
+  get-release-matrix:
+    name: Generate a Matrix of Releases in this Repo
+    runs-on: ubuntu-latest
+    outputs:
+      release_paths_json: ${{ steps.get-release-matrix-step.outputs.PATHS_JSON }}
+    steps:
+      - id: get-release-matrix-step
+        run: |
+          RELEASES=$(find releases -name bundle.yaml | xargs -L1 dirname | jq --slurp --raw-input 'split("\n")[:-1]' | jq -c "{\"release-path\": . }")
+          echo "::set-output name=PATHS_JSON::$RELEASES"
   check-bundles:
     name: Check bundles for updates
+    needs: get-release-matrix
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        bundle_dir: [releases/sample1/edge/ca-scribner-test-bundle]
+      matrix: ${{ fromJson(needs.get-release-matrix.outputs.release_paths_json) }}
     steps:
       - uses: actions/checkout@v3
       # Get helpers
@@ -26,7 +36,7 @@ jobs:
         run: sudo snap install juju --classic
       - run: tree
       - run: pip install -r _helpers/requirements.txt
-      - run: python main.py ${{ matrix.bundle_dir }}/bundle.yaml ${{ matrix.bundle_dir }}/bundle.yaml
+      - run: python main.py ${{ matrix.release-path }}/bundle.yaml ${{ matrix.release-path }}/bundle.yaml
       - run: git status
       # We can make commits, but any untracked changes will still be committed by the action
       # - run: |
