@@ -5,7 +5,7 @@ applications:
     _github_repo_name: test-charm
     _tracked_channel: latest/edge
     charm: ca-scribner-test-charm
-    revision: 7
+    revision: 27
     scale: 1
   ca-scribner-test-charm-stable:
     _github_repo_name: test-charm
