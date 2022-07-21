@@ -5,7 +5,7 @@ applications:
     _github_repo_name: test-charm
     _tracked_channel: latest/edge  # `channel` is ignored if revision is here, I think.  But maybe we should _hide it anyway
     charm: ca-scribner-test-charm
-    revision: 0  # Null to start for new bundle?  Or could just set to -1 or 0
+    revision: 27 # Null to start for new bundle?  Or could just set to -1 or 0
     scale: 1
   ca-scribner-test-charm-stable:
     _github_repo_name: test-charm
