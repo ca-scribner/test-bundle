@@ -1,11 +1,12 @@
 name: Test new changes
 
 on:
-  pull_request:
+  push:
     branches:
       - master
       - main
       - track/**
+  pull_request:
 
 jobs:
   detect-changed-releases:

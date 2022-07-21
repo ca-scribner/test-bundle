@@ -1,7 +1,8 @@
 name: Check Charm Revisions
 on:
   workflow_dispatch:
-  # For debugging only.  
+  # add on a schedule
+  # push added for debugging only.
   push:
     branches: main
 
