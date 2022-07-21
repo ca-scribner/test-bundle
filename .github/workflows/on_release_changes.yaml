@@ -25,10 +25,10 @@ jobs:
 
   tests:
     name: Run Tests
-    needs: detect-changed-release
+    needs: detect-changed-releases
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJson(needs.detect-changed-release.outputs.release_paths_json) }}
+      matrix: ${{ fromJson(needs.detect-changed-releases.outputs.release_paths_json) }}
     steps:
       - uses: ./.github/workflows/integration.yaml
         with:
