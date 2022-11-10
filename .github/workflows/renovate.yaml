@@ -1,0 +1,22 @@
+name: Renovate
+
+on:
+  workflow_call:
+    secrets:
+      RENOVATE_TOKEN:
+        required: true
+  workflow_dispatch:
+
+jobs:
+  renovate:
+    name: Renovate all repositories
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v32.238.4
+        with:
+          configurationFile: ./.github/workflows/renovate-config.js
+          token: ${{ secrets.RENOVATE_TOKEN }}
