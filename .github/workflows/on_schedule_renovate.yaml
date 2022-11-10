@@ -1,0 +1,13 @@
+name: Execute Renovate on a Schedule
+
+on:
+  schedule:
+    # Every day at 1:00AM UTC
+    - cron: '0 1 * * *'
+
+jobs:
+  renovate-repo:
+    name: Renovate
+    uses: ./.github/workflows/renovate.yaml
+    secrets:
+      RENOVATE_TOKEN: "${{ secrets.RENOVATE_TOKEN }}"
