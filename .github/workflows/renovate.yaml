@@ -18,5 +18,5 @@ jobs:
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v32.238.4
         with:
-          configurationFile: https://raw.githubusercontent.com/ca-scribner/test-bundle/main/.github/workflows/renovate-config.js
+          configurationFile: ./.github/workflows/renovate-config.js
           token: ${{ secrets.RENOVATE_TOKEN }}
