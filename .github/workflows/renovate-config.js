@@ -6,7 +6,7 @@ module.exports = {
     "onboarding": true,
     "platform": "github",
     "includeForks": true,
-    "repositories": ["ca-scribner/test-charm", "ca-scribner/test-multi-charm"],
+    "repositories": ["ca-scribner/test-charm", "ca-scribner/test-multi-charm", "canonical/argo-operators"],
     "onboardingConfig": {
         "$schema": "https://docs.renovatebot.com/renovate-schema.json",
         "rebaseWhen": "behind-base-branch",
