@@ -1,5 +1,5 @@
 module.exports = {
-    "branchPrefix": "renovate-",
+    "branchPrefix": "renovate-test-",
     "dryRun": null,
     "username": "renovate-bot-kubeflow-ci",
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
